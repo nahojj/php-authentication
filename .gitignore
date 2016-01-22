@@ -1,2 +1,7 @@
+### Vendor ###
 vendor
 composer.lock
+
+### Custom files ###
+app/config/dev.php
+app/config/prod.php

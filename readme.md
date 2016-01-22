@@ -10,7 +10,6 @@ PHP AUTHENTICATION
 - `hassankhan/database`
 - `violin`
 - `random-lib`
-- `options`
 
 See: composer.json for more information.
 

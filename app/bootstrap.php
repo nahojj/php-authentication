@@ -1,6 +1,9 @@
 <?php
     // Namespace
     use Slim\Slim;
+    use Slim\Views\Twig;
+    use Slim\Views\TwigExtension;
+
     use Noodlehaus\Config;
     use Phpauth\User\User;
 
@@ -23,7 +26,9 @@
 
     $app = new Slim([
         // Get and set the current mode
-        'mode' => rtrim(file_get_contents(INC_ROOT . '/mode.php'))
+        'mode'           => rtrim(file_get_contents(INC_ROOT . '/mode.php')),
+        'view'           => new Twig(),
+        'templates.path' => INC_ROOT . '/app/views'
     ]);
 
     // Create our config and scope 'use ($app)' with the right mode.
@@ -31,12 +36,32 @@
         $app->config = Config::load(INC_ROOT . "/app/config/{$app->mode}.php");
     });
 
-    // Catch the database connection
+    /*
+     * Catch our database connection and routes
+     *
+     */
+
     require('database.php');
+    require('routes.php');
 
     $app->container->set('user', function() {
         return new User;
     });
 
-    var_dump($app->user);
+    /*
+     * Configuration - views
+     *
+     * Allow us to set debuging (if we need to)
+     * Pass our parser extensions to get our helpers for ex. Autogenrate our views urls
+     */
+
+    $view = $app->view();
+
+    $view->parserOptions = [
+        'debug' => $app->config->get('twig.debug')
+    ];
+
+    $view->parserExtensions = [
+        new TwigExtension
+    ];
 ?>

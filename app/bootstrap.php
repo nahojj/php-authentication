@@ -2,6 +2,7 @@
     // Namespace
     use Slim\Slim;
     use Noodlehaus\Config;
+    use Phpauth\User\User;
 
     session_cache_limiter(false);
     session_start();
@@ -32,4 +33,10 @@
 
     // Catch the database connection
     require('database.php');
+
+    $app->container->set('user', function() {
+        return new User;
+    });
+
+    var_dump($app->user);
 ?>

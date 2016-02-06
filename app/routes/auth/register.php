@@ -18,8 +18,8 @@
         $v = $app->validation;
 
         $v->validate([
-            'email'             => [$email, 'required|email'],
-            'username'          => [$username, 'required|alnumDash|max(20)'],
+            'email'             => [$email, 'required|uniqueEmail'],
+            'username'          => [$username, 'required|alnumDash|max(20)|uniqueUsername'],
             'password'          => [$password, 'required|min(6)'],
             'password_confirm'  => [$password, 'required|matches(password)']
         ]);

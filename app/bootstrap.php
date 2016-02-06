@@ -55,7 +55,7 @@
     });
 
     $app->container->singleton('validation', function() use ($app) {
-        return new Validator;
+        return new Validator($app->user);
     });
 
     /*

@@ -14,16 +14,33 @@
         $password           = $request->post('password');
         $password_confirm   = $request->post('password_confirm');
 
-        // Create
-        $app->user->create([
-            'email'     => $email,
-            'username'  => $username,
-            'password'  => $app->hash->password($password)
+        // Validation
+        $v = $app->validation;
+
+        $v->validate([
+            'email'             => [$email, 'required|email'],
+            'username'          => [$username, 'required|alnumDash|max(20)'],
+            'password'          => [$password, 'required|min(6)'],
+            'password_confirm'  => [$password, 'required|matches(password)']
         ]);
 
-        // Flash Success & redirect to our homepage.
-        $app->flash('global', 'You have benn registered!');
-        $app->response->redirect($app->urlFor('home'));
+        if ($v->passes()) {
+            // Create Account
+            $app->user->create([
+                'email'     => $email,
+                'username'  => $username,
+                'password'  => $app->hash->password($password)
+            ]);
+
+            // Flash Success & redirect to our homepage.
+            $app->flash('global', 'You have benn registered!');
+            $app->response->redirect($app->urlFor('home'));
+        }
+
+        $app->render('auth/register.php', [
+            'errors'    => $v->errors(),
+            'request'   => $request,
+        ]);
 
     })->name('register.post');
 ?>

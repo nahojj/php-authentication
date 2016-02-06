@@ -7,6 +7,7 @@
     use Noodlehaus\Config;
     use Phpauth\User\User;
     use Phpauth\Helpers\Hash;
+    use Phpauth\Validation\Validator;
 
     session_cache_limiter(false);
     session_start();
@@ -51,6 +52,10 @@
 
     $app->container->singleton('hash', function() use ($app) {
         return new Hash($app->config);
+    });
+
+    $app->container->singleton('validation', function() use ($app) {
+        return new Validator;
     });
 
     /*

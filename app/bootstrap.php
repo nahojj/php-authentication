@@ -8,6 +8,7 @@
     use Phpauth\User\User;
     use Phpauth\Helpers\Hash;
     use Phpauth\Validation\Validator;
+    use Phpauth\Middleware\BeforeMiddleware;
 
     session_cache_limiter(false);
     session_start();
@@ -33,6 +34,8 @@
         'templates.path' => INC_ROOT . '/app/views'
     ]);
 
+    $app->add(new BeforeMiddleware);
+
     // Create our config and scope 'use ($app)' with the right mode.
     $app->configureMode($app->config('mode'), function() use ($app) {
         $app->config = Config::load(INC_ROOT . "/app/config/{$app->mode}.php");
@@ -45,6 +48,8 @@
 
     require('database.php');
     require('routes.php');
+
+    $app->auth = false;
 
     $app->container->set('user', function() {
         return new User;

@@ -32,6 +32,12 @@
                 'password'  => $app->hash->password($password)
             ]);
 
+            // TODO: Extend this later.
+            // $app->mail->send('email/auth/registered.php', [], function($message) {
+            //     $message->to($user->email);
+            //     $message->subject('Thanks for registering.');
+            // });
+
             // Flash Success & redirect to our homepage.
             $app->flash('global', 'You have benn registered!');
             $app->response->redirect($app->urlFor('home'));

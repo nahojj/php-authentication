@@ -63,6 +63,21 @@
         return new Validator($app->user);
     });
 
+    $app->container->singleton('mail', function() use($app) {
+        $mailer = new PHPMailer;
+
+        $mailer->Host       = $app->config->get('mail.host');
+        $mailer->SMTPAuth   = $app->config->get('mail.smtp_auth');
+        $mailer->SMTPSecure = $app->config->get('mail.smtp_secure');
+        $mailer->Post       = $app->config->get('mail.port');
+        $mailer->Username   = $app->config->get('mail.username');
+        $mailer->Password   = $app->config->get('mail.password');
+
+        $mailer->isHTML($app->config->get('mail.html'));
+
+        // TODO: Return Mailar Object
+    });
+
     /*
      * Configuration - views
      *

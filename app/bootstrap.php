@@ -6,9 +6,11 @@
 
     use Noodlehaus\Config;
     use Phpauth\User\User;
+    use Phpauth\Mail\Mailer;
     use Phpauth\Helpers\Hash;
     use Phpauth\Validation\Validator;
     use Phpauth\Middleware\BeforeMiddleware;
+
 
     session_cache_limiter(false);
     session_start();
@@ -75,7 +77,7 @@
 
         $mailer->isHTML($app->config->get('mail.html'));
 
-        // TODO: Return Mailar Object
+        return new Mailer($app->view, $mailer);
     });
 
     /*

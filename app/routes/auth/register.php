@@ -26,17 +26,16 @@
 
         if ($v->passes()) {
             // Create Account
-            $app->user->create([
+            $user = $app->user->create([
                 'email'     => $email,
                 'username'  => $username,
                 'password'  => $app->hash->password($password)
             ]);
 
-            // TODO: Extend this later.
-            // $app->mail->send('email/auth/registered.php', [], function($message) {
-            //     $message->to($user->email);
-            //     $message->subject('Thanks for registering.');
-            // });
+            $app->mail->send('email/auth/registered.php', ['user' => $user], function($message) use ($user) {
+                $message->to($user->email);
+                $message->subject('Thanks for registering.');
+            });
 
             // Flash Success & redirect to our homepage.
             $app->flash('global', 'You have benn registered!');

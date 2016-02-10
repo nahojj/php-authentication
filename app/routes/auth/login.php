@@ -29,11 +29,11 @@
             if ($user && $app->hash->passwordCheck($password, $user->password)) {
                 $_SESSION[$app->config->get('auth.session')] = $user->id;
                 $app->flash('global', 'You\'re now signed in!');
+                $app->response->redirect($app->urlFor('home'));
             } else {
                 $app->flash('global', 'Could not log you in!');
+                $app->response->redirect($app->urlFor('login'));
             }
-
-            $app->response->redirect($app->urlFor('login'));
         }
 
         $app->render('auth/login.php', [

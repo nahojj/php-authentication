@@ -5,6 +5,8 @@
     use Slim\Views\TwigExtension;
 
     use Noodlehaus\Config;
+    use RandomLib\Factory as RandomLib;
+
     use Phpauth\User\User;
     use Phpauth\Mail\Mailer;
     use Phpauth\Helpers\Hash;
@@ -78,6 +80,11 @@
         $mailer->isHTML($app->config->get('mail.html'));
 
         return new Mailer($app->view, $mailer);
+    });
+
+    $app->container->singleton('randomlib', function() use ($app) {
+        $factory = new RandomLib;
+        return $factory->getMediumStrengthGenerator();
     });
 
     /*

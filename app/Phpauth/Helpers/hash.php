@@ -20,6 +20,14 @@ Class Hash {
     public function passwordCheck($password, $hash) {
         return password_verify($password, $hash);
     }
+
+    public function hash($value) {
+        return hash('sha256', $value);
+    }
+
+    public function hashCeck($know, $user) {
+        return hash_equals($know, $user);
+    }
 }
 
 ?>

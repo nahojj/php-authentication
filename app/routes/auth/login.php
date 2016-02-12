@@ -24,6 +24,7 @@
             $user = $app->user
                 ->where('username', $identifier)
                 ->orWhere('email', $identifier)
+                ->where('active', true)
                 ->first();
 
             if ($user && $app->hash->passwordCheck($password, $user->password)) {

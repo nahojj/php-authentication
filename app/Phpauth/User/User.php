@@ -27,6 +27,13 @@
         public function getFullNameOrUsername() {
             return $this->getFullName() ?: $this->username;
         }
+
+        public function activateAccount() {
+            $this->update([
+                'active'      => true,
+                'active_hash' => null
+            ]);
+        }
     }
 
 ?>

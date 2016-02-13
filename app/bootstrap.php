@@ -51,6 +51,7 @@
      */
 
     require('database.php');
+    require('filters.php');
     require('routes.php');
 
     $app->auth = false;

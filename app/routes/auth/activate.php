@@ -1,5 +1,5 @@
 <?php
-    $app->get('/activate', function() use ($app) {
+    $app->get('/activate', $guest(), function() use ($app) {
         $request = $app->request;
 
         $email      = $request->get('email');

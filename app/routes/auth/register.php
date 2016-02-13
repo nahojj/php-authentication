@@ -1,11 +1,11 @@
 <?php
 
-    $app->get('/register', function() use ($app) {
+    $app->get('/register', $guest(), function() use ($app) {
         $app->render('auth/register.php');
     })->name('register');
 
 
-    $app->post('/register', function() use($app) {
+    $app->post('/register', $guest(), function() use($app) {
         $request = $app->request;
 
         // Get posted data.

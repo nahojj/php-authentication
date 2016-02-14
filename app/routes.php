@@ -12,4 +12,6 @@
     require INC_ROOT . '/app/routes/auth/login.php';
     // Activate
     require INC_ROOT . '/app/routes/auth/activate.php';
+    // Log Out
+    require INC_ROOT . '/app/routes/auth/logout.php';
 ?>

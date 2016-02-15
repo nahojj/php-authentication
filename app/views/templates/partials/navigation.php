@@ -1,5 +1,6 @@
 {% if auth %}
     <p>Hello, {{ auth.getFullNameOrUsername }}!</p>
+    <img src="{{ auth.getAvatarUrl({size: 30}) }}" alt="Your avatar" />
 {% endif %}
 
 <ul>

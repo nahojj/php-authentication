@@ -25,7 +25,7 @@ Class Hash {
         return hash('sha256', $value);
     }
 
-    public function hashCeck($know, $user) {
+    public function hashCheck($know, $user) {
         return hash_equals($know, $user);
     }
 }

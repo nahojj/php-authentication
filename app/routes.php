@@ -20,4 +20,6 @@
     require INC_ROOT . '/app/routes/user/all.php';
     // Admin
     require INC_ROOT . '/app/routes/admin/example.php';
+    // Erros
+    require INC_ROOT . '/app/routes/errors/404.php';
 ?>

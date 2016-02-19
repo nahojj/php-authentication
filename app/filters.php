@@ -22,4 +22,16 @@
     $guest = function() use($authenticationCheck) {
         return $authenticationCheck(false);
     };
+
+    /**
+     * Is Admin?
+     */
+
+    $admin = function() use ($app) {
+        return function() use($app) {
+            if (!$app->auth || !$app->auth->isAdmin()) {
+                $app->redirect($app->urlFor('home'));
+            }
+        };
+    };
 ?>

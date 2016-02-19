@@ -14,6 +14,9 @@
                 {% if user.getFullName %}
                     ({{ user.getFullName }})
                 {% endif %}
+                {% if auth.admin %}
+                    (Admin)
+                {% endif %}
             </div>
         {% endfor %}
     {% endif %}

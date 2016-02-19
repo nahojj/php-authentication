@@ -18,4 +18,6 @@
     require INC_ROOT . '/app/routes/user/profile.php';
     // List users
     require INC_ROOT . '/app/routes/user/all.php';
+    // Admin
+    require INC_ROOT . '/app/routes/admin/example.php';
 ?>

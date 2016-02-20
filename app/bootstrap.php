@@ -65,7 +65,7 @@
     });
 
     $app->container->singleton('validation', function() use ($app) {
-        return new Validator($app->user);
+        return new Validator($app->user, $app->hash, $app->auth);
     });
 
     $app->container->singleton('mail', function() use($app) {

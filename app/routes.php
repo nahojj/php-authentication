@@ -22,6 +22,8 @@
     require INC_ROOT . '/app/routes/auth/password/reset.php';
     // User Profile
     require INC_ROOT . '/app/routes/user/profile.php';
+    // Update profile
+    require INC_ROOT . '/app/routes/account/profile.php';
     // List users
     require INC_ROOT . '/app/routes/user/all.php';
     // Admin

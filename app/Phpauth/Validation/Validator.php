@@ -34,6 +34,11 @@
         public function validate_uniqueEmail($value, $input, $args) {
             // Get user where post email is email in db.
             $user = $this->user->where('email', $value);
+
+            if ($this->auth && $this->auth->email === $value) {
+                return true;
+            }
+
             // True or False
             return ! (bool) $user->count();
         }

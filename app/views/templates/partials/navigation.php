@@ -11,6 +11,7 @@
         {% endif %}
         <li><a href="{{ urlFor('user.profile', {username: auth.username}) }}">Your profile</a></li>
         <li><a href="{{ urlFor('password.change') }}">Change password</a></li>
+        <li><a href="{{ urlFor('account.profile') }}">Update Profile</a></li>
         <li><a href="{{ urlFor('user.all') }}">All users</a></li>
         <li><a href="{{ urlFor('logout') }}">Log Out</a></li>
     {% else %}

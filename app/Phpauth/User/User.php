@@ -10,6 +10,8 @@
             'email',
             'username',
             'password',
+            'first_name',
+            'last_name',
             'active',
             'active_hash',
             'recover_hash',

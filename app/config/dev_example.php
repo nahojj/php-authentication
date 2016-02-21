@@ -27,13 +27,9 @@
             'remember'  => 'user_r'
         ],
         'mail' => [
-            'smpt_auht'     => true,
-            'smpt_secure'   => 'tls',
-            'host'          => 'smtp.gmail.com',
-            'username'      => 'yourtestaccount@gmail.com',
-            'password'      => 'yourpassword',
-            'port'          => 587,
-            'html'          => true
+            'secret' => '',
+            'domain' => '',
+            'form'   => ''
         ],
         'twig' => [
             'debug' => true

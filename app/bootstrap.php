@@ -4,6 +4,8 @@
     use Slim\Views\Twig;
     use Slim\Views\TwigExtension;
 
+    use Mailgun\Mailgun;
+
     use Noodlehaus\Config;
     use RandomLib\Factory as RandomLib;
 
@@ -69,18 +71,9 @@
     });
 
     $app->container->singleton('mail', function() use($app) {
-        $mailer = new PHPMailer;
+        $mailer = new Mailgun($app->config->get('mail.secret'));
 
-        $mailer->Host       = $app->config->get('mail.host');
-        $mailer->SMTPAuth   = $app->config->get('mail.smtp_auth');
-        $mailer->SMTPSecure = $app->config->get('mail.smtp_secure');
-        $mailer->Post       = $app->config->get('mail.port');
-        $mailer->Username   = $app->config->get('mail.username');
-        $mailer->Password   = $app->config->get('mail.password');
-
-        $mailer->isHTML($app->config->get('mail.html'));
-
-        return new Mailer($app->view, $mailer);
+        return new Mailer($app->view, $app->config, $mailer);
     });
 
     $app->container->singleton('randomlib', function() use ($app) {

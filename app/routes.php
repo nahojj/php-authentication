@@ -16,6 +16,10 @@
     require INC_ROOT . '/app/routes/auth/logout.php';
     // Change
     require INC_ROOT . '/app/routes/auth/password/change.php';
+    // Recover
+    require INC_ROOT . '/app/routes/auth/password/recover.php';
+    // Reset
+    require INC_ROOT . '/app/routes/auth/password/reset.php';
     // User Profile
     require INC_ROOT . '/app/routes/user/profile.php';
     // List users

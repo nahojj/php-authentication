@@ -48,7 +48,7 @@
 
             // Flash Success & redirect to our homepage.
             $app->flash('global', 'You have benn registered!');
-            $app->response->redirect($app->urlFor('home'));
+            return $app->response->redirect($app->urlFor('home'));
         }
 
         $app->render('auth/register.php', [

@@ -19,7 +19,7 @@
 
             if (!$user) {
                 $app->flash('global', 'Could not found that user');
-                $app->response->redirect($app->urlFor('password.recover'));
+                return $app->response->redirect($app->urlFor('password.recover'));
             } else {
                 $identifier = $app->randomlib->generateString(128);
 
@@ -34,7 +34,7 @@
 
                 $app->flash('global', 'We have emailed your instructions to reset your password.');
 
-                $app->response->redirect($app->urlFor('home'));
+                return $app->response->redirect($app->urlFor('home'));
             }
         }
 

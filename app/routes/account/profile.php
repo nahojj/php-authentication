@@ -26,7 +26,7 @@
             ]);
 
             $app->flash('global', 'Your details have been updated.');
-            $app->response->redirect($app->urlFor('account.profile'));
+            return $app->response->redirect($app->urlFor('account.profile'));
         }
 
         $app->render('account/profile.php', [
